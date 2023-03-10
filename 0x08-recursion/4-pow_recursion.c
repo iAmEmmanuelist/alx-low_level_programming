@@ -9,7 +9,7 @@
  * Return: the power of @x by @y
  */
 
-int _pow_recursion(int x, y)
+int _pow_recursion(int x, int y)
 {
 	if (y < 0)
 		return (-1);
