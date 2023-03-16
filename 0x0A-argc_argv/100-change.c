@@ -1,75 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 /**
-  * main - Entry point
-  * @argc: The number of command-line arguments
-  * @argv: An array oof pointers to the arguments
-  *
-  * Return: 0 if the program ran successful, 1 otherwise
-  */
-
+ * main - prints the minimum number of coins to make change for a given amount
+ * @argc: arguement count
+ * @argv: array of pointers to arguement strings
+ * Return: number of coins or 1
+ **/
 int main(int argc, char *argv[])
 {
-	int cents, coins = 0;
+	int amount, coins;
 
-	/**
-	  * Check the number of arguments
-	  */
 	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
-
-	/**
-	  * Parse the argument
-	  */
-	cents = atoi(argv[1]);
-
-	/**
-	  * Check if the ammount is negative
-	  */
-	if (cents < 0)
+	amount = atoi(argv[1]);
+	coins = 0;
+	if (amount > 25)
 	{
-		printf("0\n");
-		return (0);
+		while (amount >= 25)
+			amount -= 25, coins++;
 	}
-
-	/**
-	  * Calcluate the number of coins
-	  */
-	while (cents >= 25)
+	if (amount > 10 && amount < 25)
 	{
-		coins++;
-		cents -= 25;
+		while (amount >= 10)
+			amount -= 10, coins++;
 	}
-	while (cents >= 10)
+	if (amount > 5 && amount < 10)
 	{
-		coins++;
-		cents -= 10;
+		while (amount >= 5)
+			amount -= 5, coins++;
 	}
-	while (cents >= 5)
+	if (amount > 2 && amount < 5)
+	{
+		while (amount >= 2)
+			amount -= 2, coins++;
+	}
+	if (amount == 1 || amount == 2 || amount == 5 || amount == 10 || amount == 25)
 	{
 		coins++;
-		cents -= 5;
 	}
-	while (cents >= 2)
-	{
-		coins++;
-		cents -= 2;
-	}
-	while (cents >= 1)
-	{
-		coins++;
-		cents -= 1;
-	}
-
-	/**
-	  * Print the result
-	  */
 	printf("%d\n", coins);
-
 	return (0);
-
 }
